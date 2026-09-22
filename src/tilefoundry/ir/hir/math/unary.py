@@ -86,6 +86,8 @@ def _eval_unary(ctx):
         UnaryKind.ROUND: torch.round,
         UnaryKind.EXP2: torch.exp2,
         UnaryKind.LOG2: torch.log2,
+        UnaryKind.SIN: torch.sin,
+        UnaryKind.COS: torch.cos,
     }
     return TensorValue(data=fns[ctx.op.kind](ctx.args[0].data), type=ctx.result_type)
 

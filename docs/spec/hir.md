@@ -589,6 +589,8 @@ class Binary(Op):
   - If that fallback result is a shaped value in `rmem` or `smem`, Binary MUST
     give the newly produced value its own C-order `Layout`; a concrete local
     result cannot reach authored analysis with an unresolved layout.
+  - `sin` and `cos` take angles in radians, following Torch semantics.
+    They do not commute with supported partial reductions.
   - A `ShardLayout` operand carrying `Partial(reduction)` propagates to the
     output only when `kind` provably commutes with `reduction`
     (`op(reduction(x)) == reduction(op(x))`); typeinfer rejects otherwise,
@@ -621,7 +623,7 @@ class Unary(Op):
     Attributes:
         x: input; input tensor.
         kind: attribute; unary tag including neg, abs, logical_not, rsqrt,
-            exp, log, ceil, round, exp2, and log2.
+            exp, log, ceil, round, exp2, log2, sin, and cos.
     """
 
     x: Tensor
@@ -633,6 +635,8 @@ class Unary(Op):
     `exp2` / `log2` are the base-2 counterparts. `ceil` rounds toward
     positive infinity; `round` rounds to the nearest integer with ties to
     even (banker's rounding, matching torch's own `round` semantics).
+  - `sin` and `cos` take angles in radians, following Torch semantics.
+    They do not commute with supported partial reductions.
   - A `ShardLayout` operand carrying `Partial(reduction)` propagates to the
     output only when `kind` provably commutes with `reduction`; typeinfer
     rejects otherwise, naming the offending operand and the fix (an explicit
@@ -1390,6 +1394,8 @@ Neural-network value Ops following torch semantics
 ##### MatMul / Conv2D / ReLU / Sigmoid / Tanh / SoftMax / LayerNorm
 Consensus torch.nn.functional ops.
 - constraints:
+  - `sin` and `cos` take angles in radians, following Torch semantics.
+    They do not commute with supported partial reductions.
   - A `ShardLayout` operand carrying `Partial(reduction)` propagates to the
     output only when the op provably commutes with `reduction`; typeinfer
     rejects otherwise, naming the offending operand and the fix (an explicit

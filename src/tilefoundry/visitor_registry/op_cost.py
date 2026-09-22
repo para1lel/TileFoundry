@@ -193,7 +193,8 @@ def _binary(call: Call, ctx: CostContext) -> Cost:
 
 
 _SPECIAL = frozenset(
-    {UnaryKind.RSQRT, UnaryKind.EXP, UnaryKind.LOG, UnaryKind.EXP2, UnaryKind.LOG2}
+    {UnaryKind.RSQRT, UnaryKind.EXP, UnaryKind.LOG, UnaryKind.EXP2, UnaryKind.LOG2,
+     UnaryKind.SIN, UnaryKind.COS}
 )
 
 

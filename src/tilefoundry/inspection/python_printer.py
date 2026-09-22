@@ -425,6 +425,8 @@ def _build_kinded_alias_maps():
             UnaryKind.ROUND: "round",
             UnaryKind.EXP2: "exp2",
             UnaryKind.LOG2: "log2",
+            UnaryKind.SIN: "sin",
+            UnaryKind.COS: "cos",
         },
     )
 

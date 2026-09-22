@@ -67,6 +67,8 @@ _UNARY_ALIASES: tuple[tuple[str, UnaryKind], ...] = (
     ("round", UnaryKind.ROUND),
     ("exp2", UnaryKind.EXP2),
     ("log2", UnaryKind.LOG2),
+    ("sin", UnaryKind.SIN),
+    ("cos", UnaryKind.COS),
 )
 
 

@@ -54,6 +54,8 @@ class UnaryKind(enum.Enum):
     ROUND = "round"
     EXP2 = "exp2"
     LOG2 = "log2"
+    SIN = "sin"
+    COS = "cos"
 
 
 class ReduceKind(enum.Enum):
